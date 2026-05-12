@@ -1,6 +1,7 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { Leaf, Microscope, Heart, Globe } from 'lucide-react';
+import SectionBg from '@/components/SectionBg';
 
 interface AboutProps {
   sectionBadge: string;
@@ -27,8 +28,7 @@ export default function About({ sectionBadge, title, subtitle, mission, missionT
 
   return (
     <section id="about" className="relative py-20 sm:py-28 overflow-hidden bg-white">
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-glow-green opacity-30" />
-      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-glow-gold opacity-20" />
+      <SectionBg variant="green-right" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" ref={ref}>
         <motion.div

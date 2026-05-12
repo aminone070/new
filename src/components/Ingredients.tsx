@@ -1,5 +1,6 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
+import SectionBg from '@/components/SectionBg';
 import { Sun, Moon, Droplets, Zap, Layers, Sprout } from 'lucide-react';
 
 const iconMap: Record<string, React.ElementType> = {
@@ -32,8 +33,7 @@ export default function Ingredients({ sectionBadge, title, subtitle, items }: In
 
   return (
     <section id="ingredients" className="relative py-20 sm:py-28 overflow-hidden bg-white">
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-glow-green opacity-40" />
-      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-glow-gold opacity-30" />
+      <SectionBg variant="green-right" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" ref={ref}>
         <motion.div

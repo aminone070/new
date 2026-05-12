@@ -1,6 +1,8 @@
 import { lazy, Suspense } from 'react';
 import { useLanguage } from '@/hooks/useLanguage';
 import { CartProvider, useCart } from '@/hooks/useCart';
+import { useRouter } from '@/hooks/useRouter';
+import type { Lang, TranslationsType } from '@/lib/translations';
 import FloatingElements from '@/components/FloatingElements';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
@@ -20,12 +22,11 @@ import { Toaster } from 'sonner';
 const Checkout = lazy(() => import('@/components/Checkout'));
 const ChatWidget = lazy(() => import('@/components/ChatWidget'));
 
-function AppContent() {
-  const { lang, toggleLang, t, isRTL } = useLanguage();
+function HomePage({ lang, toggleLang, t }: { lang: Lang; toggleLang: () => void; t: TranslationsType }) {
   const { isOpen, closeCart } = useCart();
 
   return (
-    <div className={`min-h-screen ${isRTL ? 'rtl-flip' : 'ltr-force'}`}>
+    <>
       <FloatingElements />
       <Navbar lang={lang} toggleLang={toggleLang} t={t.nav} />
       <CartDrawer
@@ -110,8 +111,28 @@ function AppContent() {
           form={t.newsletter.form}
           consultation={t.newsletter.consultation}
         />
+      </main>
+      <Footer
+        tagline={t.footer.tagline}
+        links={t.footer.links}
+        newsletter={t.footer.newsletter}
+        newsletterPlaceholder={t.footer.newsletterPlaceholder}
+        newsletterBtn={t.footer.newsletterBtn}
+        copyright={t.footer.copyright}
+        certifications={t.footer.certifications}
+      />
+    </>
+  );
+}
+
+function CheckoutPage({ lang, t }: { lang: string; t: ReturnType<typeof useLanguage>['t'] }) {
+  return (
+    <>
+      <FloatingElements />
+      <Navbar lang={lang as 'en' | 'ar'} toggleLang={() => {}} t={t.nav} />
+      <main className="pt-20">
         <Suspense fallback={<div className="py-20" />}>
-          <Checkout lang={lang} t={t.checkout} />
+          <Checkout lang={lang as 'en' | 'ar'} t={t.checkout} />
         </Suspense>
       </main>
       <Footer
@@ -123,6 +144,21 @@ function AppContent() {
         copyright={t.footer.copyright}
         certifications={t.footer.certifications}
       />
+    </>
+  );
+}
+
+function AppContent() {
+  const { lang, toggleLang, t, isRTL } = useLanguage();
+  const { route } = useRouter();
+
+  return (
+    <div className={`min-h-screen ${isRTL ? 'rtl-flip' : 'ltr-force'}`}>
+      {route === 'checkout' || route === 'confirmation' ? (
+        <CheckoutPage lang={lang} t={t} />
+      ) : (
+        <HomePage lang={lang} toggleLang={toggleLang} t={t} />
+      )}
       <Suspense fallback={null}>
         <ChatWidget
           lang={lang}

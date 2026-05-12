@@ -1,5 +1,6 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
+import SectionBg from '@/components/SectionBg';
 import { Star, Quote } from 'lucide-react';
 
 interface TestimonialItem {
@@ -24,7 +25,7 @@ export default function Testimonials({ sectionBadge, title, subtitle, items }: T
 
   return (
     <section className="relative py-20 sm:py-28 overflow-hidden bg-white">
-      <div className="absolute top-0 left-1/3 w-[500px] h-[500px] bg-glow-gold opacity-30" />
+      <SectionBg variant="gold-top" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" ref={ref}>
         <motion.div

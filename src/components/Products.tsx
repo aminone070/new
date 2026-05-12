@@ -3,6 +3,7 @@ import { useRef } from 'react';
 import { Star, ShoppingBag, ArrowRight, ArrowLeft } from 'lucide-react';
 import { Lang } from '@/lib/translations';
 import { useCart } from '@/hooks/useCart';
+import SectionBg from '@/components/SectionBg';
 
 interface ProductItem {
   readonly id: string;
@@ -47,7 +48,7 @@ export default function Products({ lang, sectionBadge, title, subtitle, addToCar
 
   return (
     <section id="products" className="relative py-20 sm:py-28 overflow-hidden">
-      <div className="absolute top-1/2 start-0 w-[600px] h-[600px] -translate-y-1/2 bg-glow-gold opacity-30" />
+      <SectionBg variant="gold-left" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" ref={ref}>
         <motion.div

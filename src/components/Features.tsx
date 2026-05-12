@@ -1,5 +1,6 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
+import SectionBg from '@/components/SectionBg';
 import {
   FlaskConical,
   Leaf,
@@ -37,8 +38,7 @@ export default function Features({ sectionBadge, title, subtitle, items }: Featu
 
   return (
     <section id="features" className="relative py-20 sm:py-28 overflow-hidden">
-      <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-glow-green opacity-40" />
-      <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-glow-gold opacity-30" />
+      <SectionBg variant="mixed" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" ref={ref}>
         <motion.div

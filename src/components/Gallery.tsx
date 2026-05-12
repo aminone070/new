@@ -1,6 +1,7 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
 import { X } from 'lucide-react';
+import SectionBg from '@/components/SectionBg';
 
 interface GalleryImage {
   readonly src: string;
@@ -22,7 +23,7 @@ export default function Gallery({ sectionBadge, title, subtitle, cta, images }: 
 
   return (
     <section id="gallery" className="relative py-20 sm:py-28 overflow-hidden">
-      <div className="absolute top-1/2 right-0 w-[500px] h-[500px] -translate-y-1/2 bg-glow-green opacity-30" />
+      <SectionBg variant="green-right" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" ref={ref}>
         <motion.div

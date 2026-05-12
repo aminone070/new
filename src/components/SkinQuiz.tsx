@@ -2,6 +2,7 @@ import { motion, useInView, AnimatePresence } from 'framer-motion';
 import { useRef, useState } from 'react';
 import { Sparkles, ArrowRight, ArrowLeft, CircleCheck as CheckCircle } from 'lucide-react';
 import { Lang } from '@/lib/translations';
+import SectionBg from '@/components/SectionBg';
 
 interface QuizQuestion {
   readonly question: string;
@@ -64,7 +65,7 @@ export default function SkinQuiz({ lang, sectionBadge, title, subtitle, question
 
   return (
     <section id="skin-quiz" className="relative py-20 sm:py-28 overflow-hidden">
-      <div className="absolute top-1/2 left-0 w-[500px] h-[500px] -translate-y-1/2 bg-glow-green opacity-30" />
+      <SectionBg variant="green-left" />
 
       <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8" ref={ref}>
         <motion.div

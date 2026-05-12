@@ -3,6 +3,7 @@ import { useRef, useState } from 'react';
 import { CreditCard, Truck, ShieldCheck, Loader as Loader2, CircleAlert as AlertCircle, CircleCheck as CheckCircle, ArrowLeft, ArrowRight } from 'lucide-react';
 import { useCart } from '@/hooks/useCart';
 import { supabase } from '@/lib/supabase';
+import SectionBg from '@/components/SectionBg';
 import { Lang } from '@/lib/translations';
 
 interface CheckoutProps {
@@ -127,7 +128,7 @@ export default function Checkout({ lang, t }: CheckoutProps) {
   if (status === 'success') {
     return (
       <section id="confirmation" className="relative py-20 sm:py-28 overflow-hidden">
-        <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-glow-green opacity-40" />
+        <SectionBg variant="green-left" />
         <div className="relative z-10 max-w-2xl mx-auto px-4 sm:px-6 text-center">
           <motion.div
             initial={{ scale: 0 }}
@@ -175,8 +176,7 @@ export default function Checkout({ lang, t }: CheckoutProps) {
 
   return (
     <section id="checkout" className="relative py-20 sm:py-28 overflow-hidden">
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-glow-green opacity-30" />
-      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-glow-gold opacity-20" />
+      <SectionBg variant="mixed" />
 
       <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8" ref={ref}>
         <motion.div

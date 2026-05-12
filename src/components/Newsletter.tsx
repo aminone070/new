@@ -3,6 +3,7 @@ import { useRef, useState } from 'react';
 import { Send, Calendar, CircleCheck as CheckCircle, CircleAlert as AlertCircle, Loader as Loader2 } from 'lucide-react';
 import { subscribeNewsletter, bookConsultation } from '@/lib/supabase';
 import { Lang } from '@/lib/translations';
+import SectionBg from '@/components/SectionBg';
 
 interface NewsletterProps {
   lang: Lang;
@@ -100,8 +101,7 @@ export default function Newsletter({ lang, sectionBadge, title, subtitle, form, 
 
   return (
     <section id="newsletter" className="relative py-20 sm:py-28 overflow-hidden">
-      <div className="absolute top-0 left-0 w-[600px] h-[600px] bg-glow-green opacity-40" />
-      <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-glow-gold opacity-30" />
+      <SectionBg variant="mixed" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" ref={ref}>
         <motion.div

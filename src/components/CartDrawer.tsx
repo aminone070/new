@@ -2,6 +2,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X, Plus, Minus, Trash2, ShoppingBag, ArrowRight, ArrowLeft } from 'lucide-react';
 import { useCart } from '@/hooks/useCart';
 import { Lang } from '@/lib/translations';
+import { useRouter } from '@/hooks/useRouter';
 
 interface CartDrawerProps {
   lang: Lang;
@@ -33,6 +34,7 @@ export default function CartDrawer({
   removeLabel,
 }: CartDrawerProps) {
   const { items, removeItem, updateQuantity, subtotal, totalItems } = useCart();
+  const { navigate } = useRouter();
   const isRTL = lang === 'ar';
   const Arrow = isRTL ? ArrowLeft : ArrowRight;
 
@@ -163,14 +165,13 @@ export default function CartDrawer({
                   <span className="text-base font-semibold text-forest-800">Total</span>
                   <span className="text-lg font-bold text-forest-700">${subtotal.toFixed(2)}</span>
                 </div>
-                <a
-                  href="#checkout"
-                  onClick={onClose}
+                <button
+                  onClick={() => { onClose(); navigate('checkout'); }}
                   className="flex items-center justify-center gap-2 w-full py-3 bg-forest-700 text-white font-medium rounded-xl hover:bg-forest-800 transition-colors shadow-glow-green"
                 >
                   {checkoutBtn}
                   <Arrow className="w-4 h-4" />
-                </a>
+                </button>
               </div>
             )}
           </motion.div>

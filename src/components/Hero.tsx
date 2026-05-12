@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { ArrowRight, ArrowLeft, Sparkles, ChevronDown } from 'lucide-react';
 import { Lang } from '@/lib/translations';
+import SectionBg from '@/components/SectionBg';
 
 interface HeroProps {
   lang: Lang;
@@ -34,8 +35,7 @@ export default function Hero({ lang, t }: HeroProps) {
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden pt-20">
       <div className="absolute inset-0 bg-gradient-to-br from-cream via-forest-50/30 to-cream" />
-      <div className="absolute top-20 right-0 w-[500px] h-[500px] bg-glow-green opacity-50" />
-      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-glow-gold opacity-30" />
+      <SectionBg variant="mixed" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
