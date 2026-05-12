@@ -87,7 +87,7 @@ export default function Gallery({ sectionBadge, title, subtitle, cta, images }: 
           onClick={() => setSelected(null)}
         >
           <button
-            className="absolute top-6 right-6 p-2 rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors"
+            className="absolute top-6 end-6 p-2 rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors"
             onClick={() => setSelected(null)}
           >
             <X className="w-6 h-6" />

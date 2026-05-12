@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, ShoppingBag, Leaf } from 'lucide-react';
 import { Lang } from '@/lib/translations';
+import { useCart } from '@/hooks/useCart';
 
 interface NavbarProps {
   lang: Lang;
@@ -16,12 +17,15 @@ interface NavbarProps {
     contact: string;
     shopNow: string;
     langToggle: string;
+    cart: string;
   };
 }
 
-export default function Navbar({ toggleLang, t }: NavbarProps) {
+export default function Navbar({ lang, toggleLang, t }: NavbarProps) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const isRTL = lang === 'ar';
+  const { totalItems, openCart } = useCart();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -33,7 +37,7 @@ export default function Navbar({ toggleLang, t }: NavbarProps) {
     { label: t.products, href: '#products' },
     { label: t.ingredients, href: '#ingredients' },
     { label: t.results, href: '#gallery' },
-    { label: t.about, href: '#features' },
+    { label: t.about, href: '#about' },
     { label: t.contact, href: '#newsletter' },
   ];
 
@@ -74,7 +78,7 @@ export default function Navbar({ toggleLang, t }: NavbarProps) {
                   className="relative px-4 py-2 text-sm font-medium text-forest-900/70 hover:text-forest-700 transition-colors group"
                 >
                   {link.label}
-                  <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-forest-700 to-emerald-500 group-hover:w-3/4 transition-all duration-300" />
+                  <span className={`absolute bottom-0 ${isRTL ? 'end-1/2' : 'start-1/2'} -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-forest-700 to-emerald-500 group-hover:w-3/4 transition-all duration-300`} />
                 </a>
               ))}
             </nav>
@@ -85,6 +89,23 @@ export default function Navbar({ toggleLang, t }: NavbarProps) {
                 className="px-3 py-1.5 text-xs font-medium border border-forest-700/20 rounded-full text-forest-700 hover:bg-forest-700 hover:text-white transition-all duration-300"
               >
                 {t.langToggle}
+              </button>
+
+              <button
+                onClick={openCart}
+                className="relative p-2 text-forest-700 hover:bg-forest-50 rounded-lg transition-colors"
+                aria-label={t.cart}
+              >
+                <ShoppingBag className="w-5 h-5" />
+                {totalItems > 0 && (
+                  <motion.span
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    className="absolute -top-0.5 -end-0.5 w-5 h-5 rounded-full bg-gold-600 text-white text-[10px] font-bold flex items-center justify-center"
+                  >
+                    {totalItems}
+                  </motion.span>
+                )}
               </button>
 
               <a
@@ -130,14 +151,13 @@ export default function Navbar({ toggleLang, t }: NavbarProps) {
                   {link.label}
                 </motion.a>
               ))}
-              <a
-                href="#products"
-                onClick={() => setMobileOpen(false)}
+              <button
+                onClick={() => { setMobileOpen(false); openCart(); }}
                 className="mt-4 flex items-center gap-2 px-8 py-3 bg-forest-700 text-white font-medium rounded-full shadow-glow-green"
               >
                 <ShoppingBag className="w-5 h-5" />
-                {t.shopNow}
-              </a>
+                {t.cart} {totalItems > 0 && `(${totalItems})`}
+              </button>
             </nav>
           </motion.div>
         )}

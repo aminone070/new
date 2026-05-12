@@ -2,6 +2,7 @@ import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { Star, ShoppingBag, ArrowRight, ArrowLeft } from 'lucide-react';
 import { Lang } from '@/lib/translations';
+import { useCart } from '@/hooks/useCart';
 
 interface ProductItem {
   readonly id: string;
@@ -33,6 +34,7 @@ export default function Products({ lang, sectionBadge, title, subtitle, addToCar
   const isInView = useInView(ref, { once: true, margin: '-60px' });
   const isRTL = lang === 'ar';
   const Arrow = isRTL ? ArrowLeft : ArrowRight;
+  const { addItem } = useCart();
 
   const badgeColor: Record<string, string> = {
     'Best Seller': 'bg-emerald-500 text-white',
@@ -45,7 +47,7 @@ export default function Products({ lang, sectionBadge, title, subtitle, addToCar
 
   return (
     <section id="products" className="relative py-20 sm:py-28 overflow-hidden">
-      <div className="absolute top-1/2 left-0 w-[600px] h-[600px] -translate-y-1/2 bg-glow-gold opacity-30" />
+      <div className="absolute top-1/2 start-0 w-[600px] h-[600px] -translate-y-1/2 bg-glow-gold opacity-30" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" ref={ref}>
         <motion.div
@@ -81,7 +83,7 @@ export default function Products({ lang, sectionBadge, title, subtitle, addToCar
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                   loading="lazy"
                 />
-                <div className="absolute top-3 left-3">
+                <div className="absolute top-3 start-3">
                   <span className={`px-3 py-1 rounded-full text-xs font-semibold ${badgeColor[product.badge] || 'bg-forest-700 text-white'}`}>
                     {product.badge}
                   </span>
@@ -97,7 +99,7 @@ export default function Products({ lang, sectionBadge, title, subtitle, addToCar
                       className={`w-3.5 h-3.5 ${si < Math.floor(product.rating) ? 'text-gold-500 fill-gold-500' : 'text-gray-200'}`}
                     />
                   ))}
-                  <span className="text-xs text-forest-900/40 ml-1">
+                  <span className="text-xs text-forest-900/40 ms-1">
                     {product.rating} ({product.reviews.toLocaleString()})
                   </span>
                 </div>
@@ -123,7 +125,18 @@ export default function Products({ lang, sectionBadge, title, subtitle, addToCar
                       <span className="text-sm text-forest-900/30 line-through">${product.originalPrice}</span>
                     )}
                   </div>
-                  <button className="inline-flex items-center gap-1.5 px-4 py-2 bg-forest-700 text-white text-xs font-medium rounded-full hover:bg-forest-800 transition-all duration-300 shadow-glow-green">
+                  <button
+                    onClick={() =>
+                      addItem({
+                        id: product.id,
+                        name: product.name,
+                        price: product.price,
+                        image: product.image,
+                        keyIngredient: product.keyIngredient,
+                      })
+                    }
+                    className="inline-flex items-center gap-1.5 px-4 py-2 bg-forest-700 text-white text-xs font-medium rounded-full hover:bg-forest-800 transition-all duration-300 shadow-glow-green"
+                  >
                     <ShoppingBag className="w-3.5 h-3.5" />
                     {addToCart}
                   </button>

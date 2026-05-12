@@ -80,7 +80,7 @@ export default function Testimonials({ sectionBadge, title, subtitle, items }: T
                   <div className="text-xs text-forest-900/40 truncate">{item.role}</div>
                 </div>
                 {item.weeks && (
-                  <span className="ml-auto px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-600 text-[10px] font-semibold shrink-0">
+                  <span className="ms-auto px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-600 text-[10px] font-semibold shrink-0">
                     {item.weeks}w
                   </span>
                 )}

@@ -139,7 +139,7 @@ export default function Hero({ lang, t }: HeroProps) {
               <motion.div
                 animate={{ y: [0, -8, 0] }}
                 transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-                className="absolute bottom-6 left-6 right-6 glass-card rounded-2xl p-4"
+                className="absolute bottom-6 start-6 end-6 glass-card rounded-2xl p-4"
               >
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center">
@@ -156,12 +156,12 @@ export default function Hero({ lang, t }: HeroProps) {
             <motion.div
               animate={{ y: [0, -12, 0], rotate: [0, 3, 0] }}
               transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
-              className="absolute -top-4 -right-4 w-24 h-24 bg-gold-500/10 rounded-full blur-xl"
+              className="absolute -top-4 -end-4 w-24 h-24 bg-gold-500/10 rounded-full blur-xl"
             />
             <motion.div
               animate={{ y: [0, -8, 0], rotate: [0, -2, 0] }}
               transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
-              className="absolute -bottom-6 -left-6 w-32 h-32 bg-emerald-500/10 rounded-full blur-xl"
+              className="absolute -bottom-6 -start-6 w-32 h-32 bg-emerald-500/10 rounded-full blur-xl"
             />
           </motion.div>
         </div>

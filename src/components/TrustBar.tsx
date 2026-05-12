@@ -1,17 +1,20 @@
 import { motion } from 'framer-motion';
+import { Lang } from '@/lib/translations';
 
 interface TrustBarProps {
+  lang: Lang;
   items: readonly string[];
 }
 
-export default function TrustBar({ items }: TrustBarProps) {
+export default function TrustBar({ lang, items }: TrustBarProps) {
+  const isRTL = lang === 'ar';
   const doubled = [...items, ...items];
 
   return (
     <section className="relative py-6 bg-forest-700 overflow-hidden">
       <div className="marquee-wrapper">
         <motion.div
-          animate={{ x: [0, -50 + '%'] }}
+          animate={{ x: isRTL ? [0, 50 + '%'] : [0, -50 + '%'] }}
           transition={{ duration: 30, repeat: Infinity, ease: 'linear' }}
           className="flex whitespace-nowrap"
         >

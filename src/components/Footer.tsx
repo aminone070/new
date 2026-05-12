@@ -91,9 +91,9 @@ export default function Footer({
               <input
                 type="email"
                 placeholder={newsletterPlaceholder}
-                className="px-4 py-2.5 bg-white/10 border border-white/10 rounded-l-xl text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-emerald-500/50 w-full sm:w-64"
+                className="px-4 py-2.5 bg-white/10 border border-white/10 rounded-s-xl text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-emerald-500/50 w-full sm:w-64"
               />
-              <button className="px-5 py-2.5 bg-emerald-500 text-white text-sm font-medium rounded-r-xl hover:bg-emerald-600 transition-colors shrink-0">
+              <button className="px-5 py-2.5 bg-emerald-500 text-white text-sm font-medium rounded-e-xl hover:bg-emerald-600 transition-colors shrink-0">
                 {newsletterBtn}
               </button>
             </div>
