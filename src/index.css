@@ -1,0 +1,182 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 30 25% 97%;
+    --foreground: 150 15% 12%;
+    --card: 0 0% 100%;
+    --card-foreground: 150 15% 12%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 150 15% 12%;
+    --primary: 150 65% 25%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 38 90% 45%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 30 20% 94%;
+    --muted-foreground: 150 10% 45%;
+    --accent: 152 68% 37%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 30 20% 88%;
+    --input: 30 20% 88%;
+    --ring: 150 65% 25%;
+    --radius: 0.75rem;
+
+    --brand-green: #166534;
+    --brand-gold: #D97706;
+    --brand-emerald: #10B981;
+    --brand-cream: #F8F5F2;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-cream text-foreground antialiased;
+    font-family: 'Inter', system-ui, sans-serif;
+    background-color: #F8F5F2;
+    overflow-x: hidden;
+  }
+  body.lang-ar {
+    font-family: 'Noto Sans Arabic', sans-serif;
+    direction: rtl;
+  }
+  h1, h2, h3, h4, h5 {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    letter-spacing: -0.01em;
+  }
+  body.lang-ar h1,
+  body.lang-ar h2,
+  body.lang-ar h3,
+  body.lang-ar h4 {
+    font-family: 'Noto Sans Arabic', sans-serif;
+  }
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #F8F5F2;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #166534 0%, #10B981 100%);
+  border-radius: 10px;
+  border: 2px solid #F8F5F2;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #14532d 0%, #059669 100%);
+}
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #166534 #F8F5F2;
+}
+
+/* ── Selection ── */
+::selection {
+  background-color: rgba(22, 101, 52, 0.15);
+  color: #166534;
+}
+
+/* ── Utility Classes ── */
+@layer utilities {
+  .text-gradient-green {
+    background: linear-gradient(135deg, #166534 0%, #10B981 50%, #D97706 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-gradient-gold {
+    background: linear-gradient(135deg, #D97706 0%, #f59e0b 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .bg-glow-green {
+    background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(22, 101, 52, 0.12) 0%, transparent 70%);
+  }
+
+  .bg-glow-gold {
+    background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(217, 119, 6, 0.1) 0%, transparent 70%);
+  }
+
+  .shimmer-text {
+    background: linear-gradient(
+      90deg,
+      #166534 0%,
+      #10B981 30%,
+      #D97706 50%,
+      #10B981 70%,
+      #166534 100%
+    );
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shimmer 4s linear infinite;
+  }
+
+  .glass-card {
+    background: rgba(255, 255, 255, 0.82);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(22, 101, 52, 0.1);
+  }
+
+  .product-card-hover {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .product-card-hover:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 60px rgba(22, 101, 52, 0.15);
+  }
+
+  .section-fade-in {
+    opacity: 0;
+    animation: fade-up 0.7s ease-out forwards;
+  }
+
+  .rtl-flip {
+    direction: rtl;
+  }
+
+  .ltr-force {
+    direction: ltr;
+  }
+}
+
+/* ── Noise Texture Overlay ── */
+.noise-overlay::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  opacity: 0.4;
+  z-index: 0;
+}
+
+/* ── Glow Ring ── */
+.glow-ring {
+  box-shadow: 0 0 0 1px rgba(22, 101, 52, 0.15), 0 0 40px rgba(22, 101, 52, 0.08);
+}
+
+/* ── Marquee Container ── */
+.marquee-wrapper {
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+}
