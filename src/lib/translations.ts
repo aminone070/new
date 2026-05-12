@@ -482,6 +482,13 @@ export const translations = {
         { heading: '6. Governing Law', content: 'These terms are governed by the laws of the United Kingdom. Any disputes shall be resolved through binding arbitration in London, UK.' },
       ],
     },
+    chat: {
+      title: 'Botanique Assistant',
+      subtitle: 'We typically reply instantly',
+      placeholder: 'Ask about our products...',
+      sendBtn: 'Send',
+      greeting: "Hello! Welcome to Botanique. I'm here to help you find the perfect skincare routine. What's your main skin concern?",
+    },
     footer: {
       tagline: 'Where science meets the art of beautiful skin.',
       links: {
@@ -981,6 +988,13 @@ export const translations = {
         { heading: '5. حدود المسؤولية', content: 'لا يكون بوتانيك مسؤولاً عن أي أضرار غير مباشرة أو عرضية أو تبعية ناشئة عن استخدام منتجاتنا أو موقعنا. إجمالي مسؤوليتنا لا يتجاوز سعر شراء المنتج المعني.' },
         { heading: '6. القانون الحاكم', content: 'تخضع هذه الشروط لقوانين المملكة المتحدة. يتم حل أي نزاعات من خلال التحكيم الملزم في لندن، المملكة المتحدة.' },
       ],
+    },
+    chat: {
+      title: 'مساعد بوتانيك',
+      subtitle: 'نرد عادةً فورًا',
+      placeholder: 'اسأل عن منتجاتنا...',
+      sendBtn: 'إرسال',
+      greeting: 'مرحبًا! أهلاً بك في بوتانيك. أنا هنا لمساعدتك في العثور على روتين العناية بالبشرة المثالي. ما هو اهتمامك الرئيسي بالبشرة؟',
     },
     footer: {
       tagline: 'حيث يلتقي العلم بفن البشرة الجميلة.',

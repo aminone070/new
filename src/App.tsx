@@ -1,3 +1,4 @@
+import { lazy, Suspense } from 'react';
 import { useLanguage } from '@/hooks/useLanguage';
 import { CartProvider, useCart } from '@/hooks/useCart';
 import FloatingElements from '@/components/FloatingElements';
@@ -12,10 +13,12 @@ import Testimonials from '@/components/Testimonials';
 import Newsletter from '@/components/Newsletter';
 import About from '@/components/About';
 import SkinQuiz from '@/components/SkinQuiz';
-import Checkout from '@/components/Checkout';
 import CartDrawer from '@/components/CartDrawer';
 import Footer from '@/components/Footer';
 import { Toaster } from 'sonner';
+
+const Checkout = lazy(() => import('@/components/Checkout'));
+const ChatWidget = lazy(() => import('@/components/ChatWidget'));
 
 function AppContent() {
   const { lang, toggleLang, t, isRTL } = useLanguage();
@@ -107,7 +110,9 @@ function AppContent() {
           form={t.newsletter.form}
           consultation={t.newsletter.consultation}
         />
-        <Checkout lang={lang} t={t.checkout} />
+        <Suspense fallback={<div className="py-20" />}>
+          <Checkout lang={lang} t={t.checkout} />
+        </Suspense>
       </main>
       <Footer
         tagline={t.footer.tagline}
@@ -118,6 +123,16 @@ function AppContent() {
         copyright={t.footer.copyright}
         certifications={t.footer.certifications}
       />
+      <Suspense fallback={null}>
+        <ChatWidget
+          lang={lang}
+          title={t.chat.title}
+          subtitle={t.chat.subtitle}
+          placeholder={t.chat.placeholder}
+          sendBtn={t.chat.sendBtn}
+          greeting={t.chat.greeting}
+        />
+      </Suspense>
     </div>
   );
 }
